@@ -333,7 +333,7 @@ class ShadowMacroV8:
         f7_inner.pack(fill="x")
 
         tk.Label(f7_inner, text="Hız:", bg="#21252b", fg="#aaa").pack(side="left")
-        tk.Scale(f7_inner, from_=1, to=60, orient="horizontal", variable=self.f7_cps, bg="#21252b", fg=self.colors["accent"], length=100, highlightthickness=0).pack(side="left", padx=5)
+        tk.Scale(f7_inner, from_=1, to=1000, orient="horizontal", variable=self.f7_cps, bg="#21252b", fg=self.colors["accent"], length=100, highlightthickness=0).pack(side="left", padx=5)
         self.lbl_f7_status = tk.Label(f7_inner, text="DURDU", fg="#555", bg="#21252b", width=8)
         self.lbl_f7_status.pack(side="left")
 
