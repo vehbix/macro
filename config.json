@@ -1,1 +1,1 @@
-{"f7": 28.0, "turbo": true, "human": false, "loops": 0, "limit": 0, "start_delay": 0, "top": true, "window_mode": true, "target": "1 Second Cps test - cpstest.org - Brave"}
+{"f7": 1000.0, "turbo": true, "human": false, "loops": 0, "limit": 0, "start_delay": 0, "top": false, "window_mode": false, "target": "1 Second Cps test - cpstest.org - Brave"}
