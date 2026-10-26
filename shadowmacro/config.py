@@ -24,6 +24,8 @@ class ConfigMixin:
         self.target_window_title.set(d.get("target", ""))
         self.always_on_top.set(d.get("top", False))
         self.set_hidden_panels(d.get("hidden", []))
+        if d.get("mini"):
+            self.toggle_mini()
         self.toggle_always_on_top()
         self.update_mode_hint()
 
@@ -37,7 +39,7 @@ class ConfigMixin:
              "loops": num(self.loop_var, int), "limit": num(self.limit_var, float),
              "start_delay": num(self.start_delay_var, float), "top": self.always_on_top.get(),
              "window_mode": self.use_window_mode.get(), "target": self.target_window_title.get(),
-             "hidden": self.hidden_panels()}
+             "hidden": self.hidden_panels(), "mini": self.mini_mode}
         try:
             with open(CONFIG_PATH, "w") as f: json.dump(d, f)
         except Exception:

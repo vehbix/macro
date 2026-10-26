@@ -19,6 +19,7 @@ class LayoutMixin:
         # ---------- ÜST BAR ----------
         header = ctk.CTkFrame(r, fg_color="transparent")
         header.grid(row=0, column=0, sticky="ew", padx=20, pady=(14, 6))
+        self.panels["header"] = header
         header.grid_columnconfigure(1, weight=1)
 
         brand = ctk.CTkFrame(header, fg_color="transparent")
@@ -242,17 +243,20 @@ class LayoutMixin:
 
         head = ctk.CTkFrame(card, fg_color="transparent")
         head.grid(row=0, column=0, sticky="ew", padx=18, pady=(12, 2))
+        self._clk_head = head
         self._title(head, "Hızlı Tıklayıcı").pack(side="left")
         self._badge(head, "F7").pack(side="left", padx=8)
         self.lbl_f7_status = ctk.CTkLabel(head, text="● Durdu", font=ctk.CTkFont(FONT, 12, "bold"), text_color=MUTED)
         self.lbl_f7_status.pack(side="right")
-        self._muted(card, "Pencere modunda editördeki X/Y noktasına sinyal gönderir.", 11).grid(
-            row=1, column=0, sticky="w", padx=18)
+        self._clk_hint = self._muted(card, "Pencere modunda editördeki X/Y noktasına sinyal gönderir.", 11)
+        self._clk_hint.grid(row=1, column=0, sticky="w", padx=18)
 
         row = ctk.CTkFrame(card, fg_color="transparent")
         row.grid(row=2, column=0, sticky="ew", padx=18, pady=(10, 14))
         row.grid_columnconfigure(1, weight=1)
-        self._muted(row, "CPS").grid(row=0, column=0, padx=(0, 10))
+        self._clk_row = row
+        self._clk_cps_lbl = self._muted(row, "CPS")
+        self._clk_cps_lbl.grid(row=0, column=0, padx=(0, 10))
         self.cps_slider = ctk.CTkSlider(row, from_=0, to=1, command=self.on_cps_slide, height=18,
                                         progress_color=AMBER, button_color=AMBER, button_hover_color=AMBER_H,
                                         fg_color=SURFACE3)
@@ -266,6 +270,9 @@ class LayoutMixin:
                                     corner_radius=10, fg_color=AMBER, hover_color=AMBER_H, text_color="#1f1606",
                                     font=ctk.CTkFont(FONT, 13, "bold"))
         self.btn_f7.grid(row=0, column=3)
+        # sadece mini modda görünen düğmeler
+        self._btn_mini_pin = self._ghost_btn(row, "📌", self.toggle_pin, width=32)
+        self._btn_mini_exit = self._ghost_btn(row, "⤢", self.toggle_mini, width=32)
 
     def _build_runner(self, parent):
         card = self._card(parent)
